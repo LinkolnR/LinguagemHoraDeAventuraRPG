@@ -1,0 +1,7 @@
+personagem {
+    nome "string",
+    vida 100,
+    talento "teste",
+    defeito "medroso",
+    conceito "de agua",
+    historia "sandnsann" }
