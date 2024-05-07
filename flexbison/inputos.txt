@@ -1,7 +1,3 @@
-personagem {
-    nome "string",
-    vida 100,
-    talento "teste",
-    defeito "medroso",
-    conceito "de agua",
-    historia "sandnsann" }
+sessao(2) {
+    jogadores_encontram
+    encontrar_monstro("Goblin") tentando(monstros_vivos) ataque(1, "Espada")}

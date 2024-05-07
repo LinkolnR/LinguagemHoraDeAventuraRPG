@@ -45,28 +45,26 @@ ESPECIAL             =   [!@#$%^&*()]
 ### Exemplo de criação de personagem:
 ```c
 personagem {
-    nome "Aldarion"
-    vida 150
-    talento "Magia Elemental"
-    defeito "Fobia de Aranhas"
-    conceito "Mago Viajante"
-    historia "Um mago errante em busca de conhecimento perdido."
-}
+    nome "string",
+    vida 100,
+    talento "teste",
+    defeito "medroso",
+    conceito "de agua",
+    historia "sandnsann" }
 ```
-
-
 
 ### Exemplo de criação de sessão:
 ```c
-sessao(1)
-mestre_narra  "Vocês encontram um baú dentro de uma masmorra, o que vocês fazem?"
+sessao(1) {
+    pergunta "Qual é o seu nome?"}
+
 ```
 
-### Exemplo de criação de loop:
+### Exemplo de mestre_narra:
 ```c
-sessao(1)
-mestre_narra  "Vocês encontram um baú dentro de uma masmorra, o que vocês fazem?"
-mestre_narra  "Vocês vão em direção a um baú e ao tentar abrir descobrem que ele é um mímico e entram em combate"
-jogadores_encontram encontrar_monstro(goblin)
-
+sessao(1) {
+    mestre_narra {
+        "o que é isso?"}}
+        
 ```
+
