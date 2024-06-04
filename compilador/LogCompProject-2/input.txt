@@ -1,0 +1,20 @@
+sessao{
+    criar_jogador(){
+        nome: "Jogador 1"
+        vida: 100
+        arma: "Espada"
+    }
+    criar_jogador(){
+        nome: "Jogador 2"
+        vida: 100
+        arma: "Espada"
+    }  
+    round(npc){
+        npc_fala("Ola, aventureiro!")
+        jogador_fala("Ola, quem e voce?")
+    } 
+    round(jogador){
+        jogador_fala("watashi wa?")
+        npc_fala("oyasuminasai!")
+    }
+}

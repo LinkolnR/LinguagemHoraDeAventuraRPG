@@ -76,7 +76,7 @@ CHARADA: charada start_parentheses STRING colon STRING end_parentheses enter jog
 
 CHECK: certo start_parentheses BOOLEXPRESSION end_parentheses start_bracket enter ROUND end_bracket enter CHECKAUX ;
 
-CHECKAUX: errado ROUND | /* empty */;
+CHECKAUX: errado ROUND | /* empty */ ;
 
 COMBATE: monstro start_parentheses DIGIT semicolon DIGIT end_parentheses enter LOOP_COMBAT; 
 

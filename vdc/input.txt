@@ -1,5 +1,5 @@
 sessao{
-    criar_jogador(1){
+    criar_jogador(){
         nome: "Jogador 1"
         vida: 100
         arma: "Espada"
@@ -12,4 +12,5 @@ sessao{
         npc_fala("Olá, aventureiro!")
         jogador_fala("Olá, quem é você?")
     }
+    
 }
