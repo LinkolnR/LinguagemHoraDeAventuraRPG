@@ -9,6 +9,7 @@ PARD = ')'
 BRAKE = '{'
 BRAKD = '}'
 COLON = ':'
+SEMICOLON = ';'
 END = ''
 EOF = 'EOF' 
 ASS = '='
@@ -363,6 +364,70 @@ class CharadaNode(Node):
         falas.evaluate(symbol_table)
         blocos.evaluate(symbol_table)
 
+class CombateNode(Node):
+    def __init__(self, children):
+        super().__init__(value=None, children=children)
+    
+    def evaluate(self, symbol_table):
+        jogador_vivo = True
+        monstro_vivo = True
+        
+        jogador = self.children[0]
+        monstro = self.children[1]
+        
+        while jogador_vivo and monstro_vivo:
+            jogador.evaluate(symbol_table)
+
+            if monstro_vida <= 0:
+                monstro_vivo = False
+                print("O monstro morreu!")
+
+
+            monstro.evaluate(symbol_table)
+            
+            jogador_vida = PlayerTable.get(jogador.children[0])['vida']
+            monstro_vida = PlayerTable.get('monstro')['vida']
+            
+            if jogador_vida <= 0:
+                jogador_vivo = False
+                print("O jogador morreu!")
+            
+
+class AtaquePlayerNode(Node):
+    def __init__(self, children):
+        super().__init__(value=None, children=children)
+    
+    def evaluate(self, symbol_table):
+        id_do_jogador = self.children[0]
+        vida_atual = self.children[1]
+        dano = self.children[2]
+        
+        # Atualizar a vida do monstro na PlayerTable
+        PlayerTable.set('monstro', {'vida': PlayerTable.get('monstro')['vida'] - dano})
+        
+        # Atualizar a vida do jogador na PlayerTable
+        jogador = PlayerTable.get(id_do_jogador)
+        jogador['vida'] = vida_atual - dano
+        PlayerTable.set(id_do_jogador, jogador)
+
+class MonstroNode(Node):
+    def __init__(self, children):
+        super().__init__(value=None, children=children)
+    
+    def evaluate(self, symbol_table):
+        id_do_jogador = self.children[0]
+        vida_do_monstro = self.children[1]
+        dano_do_monstro = self.children[2]
+        
+        # Atualizar a vida do jogador na PlayerTable
+        jogador = PlayerTable.get(id_do_jogador)
+        jogador['vida'] = jogador['vida'] - dano_do_monstro
+        PlayerTable.set(id_do_jogador, jogador)
+        
+        # Atualizar a vida do monstro na PlayerTable
+        monstro = PlayerTable.get('monstro')
+        monstro['vida'] = vida_do_monstro
+        PlayerTable.set('monstro', monstro)
 
 
 # Tokenizer
@@ -468,6 +533,9 @@ class Tokenizer():
             elif self.source[self.position] == ':':
                 self.next = Token(':', COLON)
                 self.position +=1
+            elif self.source[self.position] == ';':
+                self.next = Token(';', SEMICOLON)
+                self.position +=1
             else:
                 while (self.source[self.position].isalpha() or self.source[self.position].isdigit() or self.source[self.position] == "_" or self.source[self.position] == ","):
                     if self.source[self.position] == "," and len(aux) > 0:
@@ -481,8 +549,10 @@ class Tokenizer():
                     if (self.position == (len(self.source))):
                         self.position = self.position - 1
                         break
-                
+                print(aux)
+                print(self.source[self.position])
                 if aux == []:
+
                     raise "Erro de sintaxe - não é um token válido"
                 palavra = ''.join(aux)
                 if palavra in especial_words:
@@ -782,10 +852,127 @@ class Parser():
                 falas.append(FalaNode(["npc_fala", StrVal(fala_jogador)]))
 
             return (FalaRoundNode(falas))
-
         elif Parser.tokenizer.next.type == "combate":
-            pass
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != ")":
+                raise "Erro de sintaxe -  falta o parêntese de fechamento após 'round'"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != "{":
+                raise "Erro de sintaxe - falta a chave de abertura após 'round'"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != 'QUEBRA':
+                raise "Erro de sintaxe - falta a quebra de linha"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != "monstro":
+                raise "Erro de sintaxe - falta o 'monstro' após 'combate'"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != "(":
+                raise "Erro de sintaxe - falta o parêntese de abertura após 'monstro'"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != "int":
+                raise "Erro de sintaxe - falta o valor do monstro após 'monstro'"
+            vida = Parser.tokenizer.next.value
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != ";":
+                raise "Erro de sintaxe - falta o ponto e vírgula após o valor do monstro"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != "int":
+                raise "Erro de sintaxe - falta o valor do monstro após 'monstro'"
+            ataque = Parser.tokenizer.next.value
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != ")":
+                raise "Erro de sintaxe - falta o parêntese de fechamento após 'monstro'"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != "QUEBRA":
+                raise "Erro de sintaxe - falta a quebra de linha"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != "combate_on":
+                raise "Erro de sintaxe - falta o 'combate_on' após 'monstro'"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != "(":
+                raise "Erro de sintaxe - falta o parêntese de abertura após 'combate_on'"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != ")":
+                raise "Erro de sintaxe - falta o parêntese de fechamento após 'combate_on'"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != "{":
+                raise "Erro de sintaxe - falta a chave de abertura após 'combate_on'"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type != "QUEBRA":
+                raise "Erro de sintaxe - falta a quebra de linha"
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type == "jogador":
+                # jogador(1;100;10)
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != "(":
+                    raise "Erro de sintaxe - falta o parêntese de abertura após 'jogador'"
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != "int":
+                    raise "Erro de sintaxe - falta o valor do jogador após 'jogador'"
+                id_jogador = Parser.tokenizer.next.value
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != ";":
+                    raise "Erro de sintaxe - falta o ponto e vírgula após o valor do jogador"
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != "int":
+                    raise "Erro de sintaxe - falta o valor do jogador após 'jogador'"
+                vida_jogador = Parser.tokenizer.next.value
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != ";":
+                    raise "Erro de sintaxe - falta o ponto e vírgula após o valor do jogador"
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != "int":
+                    raise "Erro de sintaxe - falta o valor do jogador após 'jogador'"
+                ataque_jogador = Parser.tokenizer.next.value
+                Parser.tokenizer.select_next()
+                
+                if Parser.tokenizer.next.type != ")":
+                    raise "Erro de sintaxe - falta o parêntese de fechamento após 'jogador'"
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != "QUEBRA":
+                    raise "Erro de sintaxe - falta a quebra de linha"
+                Parser.tokenizer.select_next()
+                # monstro(10;30;5)
+                player_ataque = AtaquePlayerNode([id_jogador, vida_jogador, ataque_jogador])
+            if Parser.tokenizer.next.type == "monstro":
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != "(":
+                    raise "Erro de sintaxe - falta o parêntese de abertura após 'monstro'"
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != "int":
+                    raise "Erro de sintaxe - falta o valor do monstro após 'monstro'"
+                alvo_monstro = Parser.tokenizer.next.value
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != ";":
+                    raise "Erro de sintaxe - falta o ponto e vírgula após o valor do jogador"
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != "int":
+                    raise "Erro de sintaxe - falta o valor do monstro após 'monstro'"
+                vida_monstro = Parser.tokenizer.next.value
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != ";":
+                    raise "Erro de sintaxe - falta o ponto e vírgula após o valor do jogador"
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != "int":
+                    raise "Erro de sintaxe - falta o valor do monstro após 'monstro'"
+                ataque_monstro = Parser.tokenizer.next.value
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != ")":
+                    raise "Erro de sintaxe - falta o parêntese de fechamento após 'monstro'"
+                Parser.tokenizer.select_next()
+                if Parser.tokenizer.next.type != "QUEBRA":
+                    raise "Erro de sintaxe - falta a quebra de linha"
+                Parser.tokenizer.select_next()
+                MonstroNode([alvo_monstro, vida_monstro, ataque_monstro])
+            if Parser.tokenizer.next.type != "}":
+                raise "Erro de sintaxe - falta a chave de fechamento após 'certo'"
+            Parser.tokenizer.select_next()
+            return CombateNode([player_ataque, MonstroNode])
+                
 
+                
+
+            
         elif Parser.tokenizer.next.type == "charada":
             falas = []
             Parser.tokenizer.select_next()
@@ -873,7 +1060,6 @@ class Parser():
                     # falas.append(FalaNode(["certo", if_block, else_block]))
                 else:
                     blocos = Condicional([resposta,fala_jogador, node_if])
-
                 return CharadaNode([FalaRoundNode(falas),blocos])
             print(Parser.tokenizer.next.type)
             raise "Erro de sintaxe - falta o 'certo' após 'charada'"
