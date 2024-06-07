@@ -3,11 +3,13 @@ sessao {
         nome: "Jogador1"
         vida: 100
         arma: "Espada"
+        dano: 10
     }
     criar_jogador() {
         nome: "Jogador2"
         vida: 100
         arma: "Espada"
+        dano: 10
     }
     round(npc){
             npc_fala("Olá, aventureiro!")

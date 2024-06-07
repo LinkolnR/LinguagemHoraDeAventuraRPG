@@ -1,3 +1,0 @@
-sessao(2) {
-    jogadores_encontram
-    encontrar_monstro("Goblin") tentando(monstros_vivos) ataque(1, "Espada")}

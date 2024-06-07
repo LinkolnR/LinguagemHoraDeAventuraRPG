@@ -3,11 +3,13 @@ sessao {
         nome: "Jogador1"
         vida: 100
         arma: "Espada"
+        dano: 10
     }
     criar_jogador() {
         nome: "Jogador2"
         vida: 100
         arma: "Espada"
+        dano: 10
     }
     round(npc){
             npc_fala("Olá, aventureiro!")
@@ -15,12 +17,16 @@ sessao {
     } 
     round(charada){
         charada("O que é, o que é? Quanto mais se tira, maior ele fica." : "Buraco" )
-        jogador_responde("É o buraco!")
+        jogador_responde("É o suor!")
         certo(correto){
             round(npc){
                 npc_fala("Boa aventureito, pode passar")
                 jogador_fala("Ufa, mais uma ponte superada")
             } 
         }
-} 
+        errado round(npc){
+                npc_fala("Você errou, não pode passar")
+                jogador_fala("Droga, vou ter que tentar de novo")
+            } 
+    }
 }

@@ -71,18 +71,19 @@ extern int yydebug;
     nome = 272,                    /* nome  */
     vida = 273,                    /* vida  */
     arma = 274,                    /* arma  */
-    certo = 275,                   /* certo  */
-    errado = 276,                  /* errado  */
-    colon = 277,                   /* colon  */
-    semicolon = 278,               /* semicolon  */
-    start_parentheses = 279,       /* start_parentheses  */
-    end_parentheses = 280,         /* end_parentheses  */
-    start_bracket = 281,           /* start_bracket  */
-    end_bracket = 282,             /* end_bracket  */
-    DIGIT = 283,                   /* DIGIT  */
-    IDENTIFIER = 284,              /* IDENTIFIER  */
-    STRING = 285,                  /* STRING  */
-    enter = 286                    /* enter  */
+    dano = 275,                    /* dano  */
+    certo = 276,                   /* certo  */
+    errado = 277,                  /* errado  */
+    colon = 278,                   /* colon  */
+    semicolon = 279,               /* semicolon  */
+    start_parentheses = 280,       /* start_parentheses  */
+    end_parentheses = 281,         /* end_parentheses  */
+    start_bracket = 282,           /* start_bracket  */
+    end_bracket = 283,             /* end_bracket  */
+    DIGIT = 284,                   /* DIGIT  */
+    IDENTIFIER = 285,              /* IDENTIFIER  */
+    STRING = 286,                  /* STRING  */
+    enter = 287                    /* enter  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -96,7 +97,7 @@ union YYSTYPE
     char* str_value;
     int int_value;
 
-#line 100 "parser.h"
+#line 101 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

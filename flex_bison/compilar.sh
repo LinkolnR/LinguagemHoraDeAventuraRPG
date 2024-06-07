@@ -9,7 +9,7 @@ SCANNER_C_FILE="scanner.c"
 OUTPUT_EXEC="parser"
 
 # Step 1: Run Bison to generate parser.c and parser.tab.h
-bison -d -o $PARSER_C_FILE $BISON_FILE
+bison -d -o  $PARSER_C_FILE $BISON_FILE -Wcounterexamples
 if [ $? -ne 0 ]; then
     echo "Bison failed"
     exit 1

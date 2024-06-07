@@ -34,6 +34,8 @@ void yyerror(const char *s);
 %token nome
 %token vida
 %token arma
+%token dano
+
 
 %token certo
 %token errado
@@ -60,13 +62,13 @@ SESSAO: sessao start_bracket enter PRE_SET ROUNDS end_bracket;
 
 PRE_SET: CRIAR_JOGADOR  | /* empty */;
 
-CRIAR_JOGADOR: criar_jogador start_parentheses end_parentheses start_bracket enter nome colon STRING enter vida colon DIGIT enter arma colon STRING enter end_bracket enter PRE_SET;
+CRIAR_JOGADOR: criar_jogador start_parentheses end_parentheses start_bracket enter nome colon STRING enter vida colon DIGIT enter arma colon STRING enter dano colon DIGIT enter end_bracket enter PRE_SET;
 
 ROUNDS: ROUND |  /* empty */; 
 
 ROUND: round start_parentheses POSSIBILIDADES end_bracket enter ROUNDS;
 
-POSSIBILIDADES :  npc end_parentheses start_bracket enter NPC | jogador end_parentheses start_bracket enter JOGADOR | charada end_parentheses start_bracket enter CHARADA | combate end_parentheses start_bracket enter COMBATE ;
+POSSIBILIDADES :  npc end_parentheses start_bracket enter NPC | jogador end_parentheses start_bracket enter JOGADOR | charada end_parentheses start_bracket enter CHARADA | combate end_parentheses start_bracket enter MONSTER_LIST ;
 
 NPC: npc_fala start_parentheses STRING end_parentheses enter jogador_fala start_parentheses STRING end_parentheses enter;
 
@@ -78,11 +80,14 @@ CHECK: certo start_parentheses BOOLEXPRESSION end_parentheses start_bracket ente
 
 CHECKAUX: errado ROUND | /* empty */ ;
 
-COMBATE: monstro start_parentheses DIGIT semicolon DIGIT end_parentheses enter LOOP_COMBAT; 
+MONSTER_LIST : MONSTER | LOOP_COMBAT;
+
+MONSTER: monstro start_parentheses DIGIT semicolon DIGIT  end_parentheses enter MONSTER_LIST ;
+
 
 LOOP_COMBAT: combate_on start_parentheses end_parentheses start_bracket enter JOGADOR_COMBATE MONSTRO_COMBATE end_bracket enter;
 
-JOGADOR_COMBATE: jogador start_parentheses DIGIT semicolon DIGIT semicolon DIGIT end_parentheses enter JOGADOR_COMBATE | /* empty */;
+JOGADOR_COMBATE: jogador start_parentheses DIGIT semicolon DIGIT end_parentheses enter JOGADOR_COMBATE | /* empty */;
 
 MONSTRO_COMBATE: monstro start_parentheses DIGIT semicolon DIGIT end_parentheses enter MONSTRO_COMBATE | /* empty */;
 

@@ -3,6 +3,7 @@ sessao {
     nome: "Jogador1"
     vida: 100
     arma: "Espada"
+    dano: 10
   }
   criar_jogador(2) {
     nome: "Jogador2"

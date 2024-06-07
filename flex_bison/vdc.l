@@ -43,6 +43,8 @@ char* yyval;
 "nome"                      { yyval = strdup(yytext); return nome; }
 "vida"                      { yyval = strdup(yytext); return vida; }
 "arma"                      { yyval = strdup(yytext); return arma; }
+"dano"                      { yyval = strdup(yytext); return dano; }
+
 
 
 
