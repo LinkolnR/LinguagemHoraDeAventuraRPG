@@ -67,7 +67,7 @@
 
 
 /* First part of user prologue.  */
-#line 1 "vdc.y"
+#line 1 "rpg.y"
 
 #include <stdio.h>
 int yylex();
@@ -1374,7 +1374,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 96 "vdc.y"
+#line 96 "rpg.y"
 
 
 void yyerror(const char *s) {

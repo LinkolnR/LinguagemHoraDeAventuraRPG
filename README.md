@@ -129,3 +129,16 @@ sessao{
         }
     }
 ```
+
+---
+# Flex Bison
+A implementação dessa parte está presente nos arquivs `flex_bison/rpg.l` e `flex_bison/rpg.y` e criei um script para auxiliar a compilação, que é o script `compilar.sh`, assim podemos apenas rodar o script que vai ter como saida o arquivo executável `parser`.
+```bash
+./compilar.sh # lembre de estar dentro da pasta flex_bison
+```
+Com o executável `parser` pronto podemos realizar os testes.
+```
+./parser < testes/arquivo_teste.rpg
+```
+
+

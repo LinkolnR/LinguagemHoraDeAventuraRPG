@@ -548,8 +548,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "vdc.l"
-#line 2 "vdc.l"
+#line 1 "rpg.l"
+#line 2 "rpg.l"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -773,7 +773,7 @@ YY_DECL
 		}
 
 	{
-#line 13 "vdc.l"
+#line 13 "rpg.l"
 
 
 #line 780 "scanner.c"
@@ -845,180 +845,180 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 15 "vdc.l"
+#line 15 "rpg.l"
 ; /* Ignora espaços em branco e tabulações */
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 17 "vdc.l"
+#line 17 "rpg.l"
 { yyval = strdup(yytext); return sessao; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 18 "vdc.l"
+#line 18 "rpg.l"
 { yyval = strdup(yytext); return certo; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 19 "vdc.l"
+#line 19 "rpg.l"
 { yyval = strdup(yytext); return errado; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 21 "vdc.l"
+#line 21 "rpg.l"
 { yyval = strdup(yytext); return npc; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 22 "vdc.l"
+#line 22 "rpg.l"
 { yyval = strdup(yytext); return npc_fala; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 24 "vdc.l"
+#line 24 "rpg.l"
 { yyval = strdup(yytext); return jogador; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 25 "vdc.l"
+#line 25 "rpg.l"
 { yyval = strdup(yytext); return jogador_fala; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 26 "vdc.l"
+#line 26 "rpg.l"
 { yyval = strdup(yytext); return jogador_responde; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 29 "vdc.l"
+#line 29 "rpg.l"
 { yyval = strdup(yytext); return mestre; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 30 "vdc.l"
+#line 30 "rpg.l"
 { yyval = strdup(yytext); return mestre_fala; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 33 "vdc.l"
+#line 33 "rpg.l"
 { yyval = strdup(yytext); return round; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 35 "vdc.l"
+#line 35 "rpg.l"
 { yyval = strdup(yytext); return charada; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 36 "vdc.l"
+#line 36 "rpg.l"
 { yyval = strdup(yytext); return combate; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 37 "vdc.l"
+#line 37 "rpg.l"
 { yyval = strdup(yytext); return combate_on; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 40 "vdc.l"
+#line 40 "rpg.l"
 { yyval = strdup(yytext); return monstro; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 42 "vdc.l"
+#line 42 "rpg.l"
 { yyval = strdup(yytext); return criar_jogador; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 43 "vdc.l"
+#line 43 "rpg.l"
 { yyval = strdup(yytext); return nome; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 44 "vdc.l"
+#line 44 "rpg.l"
 { yyval = strdup(yytext); return vida; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 45 "vdc.l"
+#line 45 "rpg.l"
 { yyval = strdup(yytext); return arma; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 46 "vdc.l"
+#line 46 "rpg.l"
 { yyval = strdup(yytext); return dano; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 51 "vdc.l"
+#line 51 "rpg.l"
 { yyval = strdup(yytext); return semicolon; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 53 "vdc.l"
+#line 53 "rpg.l"
 { yyval = strdup(yytext); return colon; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 55 "vdc.l"
+#line 55 "rpg.l"
 { yyval = strdup(yytext); return start_parentheses; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 56 "vdc.l"
+#line 56 "rpg.l"
 { yyval = strdup(yytext); return end_parentheses; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 57 "vdc.l"
+#line 57 "rpg.l"
 { yyval = strdup(yytext); return start_bracket; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 58 "vdc.l"
+#line 58 "rpg.l"
 { yyval = strdup(yytext); return end_bracket; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 60 "vdc.l"
+#line 60 "rpg.l"
 { yyval = strdup(yytext); return DIGIT; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 61 "vdc.l"
+#line 61 "rpg.l"
 { yyval = strdup(yytext); return IDENTIFIER; }
 	YY_BREAK
 case 30:
 /* rule 30 can match eol */
 YY_RULE_SETUP
-#line 62 "vdc.l"
+#line 62 "rpg.l"
 { yyval = strdup(yytext); return STRING; }
 	YY_BREAK
 case 31:
 /* rule 31 can match eol */
 YY_RULE_SETUP
-#line 64 "vdc.l"
+#line 64 "rpg.l"
 { yyval = strdup(yytext); return enter; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 65 "vdc.l"
+#line 65 "rpg.l"
 ; 
 	YY_BREAK
 case 33:
 /* rule 33 can match eol */
 YY_RULE_SETUP
-#line 66 "vdc.l"
+#line 66 "rpg.l"
 ; 
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 68 "vdc.l"
+#line 68 "rpg.l"
 { yyval = strdup(yytext); printf("%s",yyval); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 69 "vdc.l"
+#line 69 "rpg.l"
 ECHO;
 	YY_BREAK
 #line 1025 "scanner.c"
@@ -2038,5 +2038,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 69 "vdc.l"
+#line 69 "rpg.l"
 

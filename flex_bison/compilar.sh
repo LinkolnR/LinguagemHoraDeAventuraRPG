@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define file names
-BISON_FILE="vdc.y"
-FLEX_FILE="vdc.l"
+BISON_FILE="rpg.y"
+FLEX_FILE="rpg.l"
 PARSER_C_FILE="parser.c"
 PARSER_H_FILE="parser.h"
 SCANNER_C_FILE="scanner.c"
