@@ -1,5 +1,5 @@
-# LinguagemHoraDeAventuraRPG
-Linguagem feita para jogar o sistema de RPG de Hora de Aventura
+# LinguagemRPG
+Linguagem simplificada feita para jogar uma aventura simples de rpg com charadas, combates, e conversas com npcs
 
 
 
