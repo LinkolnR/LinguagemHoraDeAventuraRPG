@@ -1,0 +1,22 @@
+sessao{
+    criar_jogador(){
+        nome: "Jogador 1"
+        vida: 100
+        arma: "Espada"
+        dano: 10
+    } 
+    round(npc){
+        npc_fala("Ola, aventureiro!")
+        jogador_fala("Ola, quem e voce?")
+    } 
+    round(npc){
+        npc_fala("Sou o ferreiro da vila, seja bem vindo!")
+        jogador_fala("Que demais! estava mesmo procurando uma nova espada!")
+    }
+}
+
+
+
+
+
+
